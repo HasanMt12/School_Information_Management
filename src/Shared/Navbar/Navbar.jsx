@@ -2,9 +2,11 @@ import  { useEffect, useState } from "react"
 import {Dropdown, DropdownTrigger,DropdownMenu, DropdownItem, Image} from "@nextui-org/react";
 import { Link } from "react-router-dom"
 import Head from "./Head"
+import { MdKeyboardArrowDown } from "react-icons/md";
 import "./header.css"
 import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/actions/userLogout";
 const Navbar = () => {
@@ -45,12 +47,47 @@ useEffect(() => {
             <li>
               <Link to='/about'>About Us</Link>
             </li>
-            <li>
-              <Link to='/authorities'>Authorities</Link>
+            <Dropdown placement="bottom-center">
+          <DropdownTrigger>
+          <li className="font-semibold flex gap-2 justify-start items-start cursor-pointer hover:text-[#1eb2a6]">
+              Authorities <MdKeyboardArrowDown className="mt-1 text-lg text-[#1eb2a6]"/>
             </li>
-            <li>
-              <Link to='/academic'>Academic</Link>
+          </DropdownTrigger>
+            <DropdownMenu  variant="flat" >
+              <DropdownItem  className="">
+              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
+              <Link to='/authorities'>Teachers </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
             </li>
+              </DropdownItem>
+              <DropdownItem  className="">
+              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
+              <Link to='/authorities'>stuff  </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+            </li>
+              </DropdownItem>
+          
+            </DropdownMenu>
+          </Dropdown>
+          <Dropdown placement="bottom-center">
+          <DropdownTrigger>
+          <li className="font-semibold flex gap-2 justify-start items-start cursor-pointer hover:text-[#1eb2a6]">
+              Academic <MdKeyboardArrowDown className="mt-1 text-lg text-[#1eb2a6]"/>
+            </li>
+          </DropdownTrigger>
+            <DropdownMenu  variant="flat" >
+              <DropdownItem  className="">
+              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
+              <Link to='/academic'>Routine of All classes </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+            </li>
+              </DropdownItem>
+              <DropdownItem  className="">
+              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
+              <Link to='/academic'>Result of All classes  </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+            </li>
+              </DropdownItem>
+          
+            </DropdownMenu>
+          </Dropdown>
+       
             <li>
               <Link to='/contact'>Contact</Link>
             </li>
@@ -60,7 +97,7 @@ useEffect(() => {
             <Image
               
               src={"https://i.ibb.co/0QZCv5C/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png"}
-              className="transition-transform ring-1 p-[1px] ring-cyan-600 w-8 h-8 md:w-9 md:h-9 cursor-pointer rounded-full"
+              className="transition-transform ring-1 p-[1px] ring-cyan-600 w-7 h-7 md:w-8 md:h-8 cursor-pointer rounded-full"
               size="sm"
             
             />

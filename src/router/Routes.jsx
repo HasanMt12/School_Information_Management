@@ -9,6 +9,7 @@ import Contact from "../pages/Contact";
 import Academic from "../pages/Academic";
 import AdminLayout from "../AdminDashboard/AdminLayout";
 import DashboardHome from "../AdminDashboard/components/DashboardPages/DashboardHome";
+import Speech from "../pages/Speech";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/academic",
         element: <Academic></Academic>,
+      },
+      {
+        path: "/speech",
+        element: <Speech></Speech>,
       },
      
     ]

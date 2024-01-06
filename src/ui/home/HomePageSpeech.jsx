@@ -14,7 +14,7 @@ const HomePageSpeech = () => {
             <p className="text-md text-gray-700 md:ml-0 ml-4 md:text-md text-sm">
                 As we gather here today, I am reminded of the incredible journey we have undertaken throughout the academic year [or mention the specific occasion]. We have faced challenges, celebrated victories, and worked together to overcome obstacles. The spirit of unity and collaboration within our school community is truly commendable.
             </p>
-            <Link className='md:ml-0 ml-4 md:px-7 px-4 rounded md:py-2 py-1 md:mt-4 my-2 md:w-[200px] w-[140px] hover:bg-white gap-2 border border-[#1EB2A6] hover:text-[#1EB2A6] bg-[#1EB2A6] text-white md:text-lg text-md flex justify-center items-center'>
+            <Link to='/speech' className='md:ml-0 ml-4 md:px-7 px-4 rounded md:py-2 py-1 md:mt-4 my-2 md:w-[200px] w-[140px] hover:bg-white gap-2 border border-[#1EB2A6] hover:text-[#1EB2A6] bg-[#1EB2A6] text-white md:text-lg text-md flex justify-center items-center'>
                 Read More <FaLongArrowAltRight className="mt-1 "></FaLongArrowAltRight>
               </Link>
             </div> 
