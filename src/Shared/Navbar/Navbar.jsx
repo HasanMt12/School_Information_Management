@@ -70,7 +70,7 @@ useEffect(() => {
               <p className="font-semibold text-sm">Signed in as</p>
               <p className="font-semibold text-sm text-cyan-600">{userState?.userInfo.email}</p>           
               </DropdownItem>
-               <DropdownItem> <Link to="/admin">Admin Dashboard</Link> </DropdownItem>
+               <DropdownItem> <Link to="/dashboard">Admin Dashboard</Link> </DropdownItem>
               <DropdownItem   onClick={logoutHandler} key="logout" color="danger">
                 Log Out
               </DropdownItem>

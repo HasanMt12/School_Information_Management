@@ -7,6 +7,8 @@ import About from "../pages/About";
 import Authorities from "../pages/Authorities";
 import Contact from "../pages/Contact";
 import Academic from "../pages/Academic";
+import AdminLayout from "../AdminDashboard/AdminLayout";
+import DashboardHome from "../AdminDashboard/components/DashboardPages/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,19 @@ const router = createBrowserRouter([
         element: <Academic></Academic>,
       },
      
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <AdminLayout></AdminLayout>,
+    children: [
+      {
+      path: "/dashboard",
+      element: <DashboardHome></DashboardHome>
+      },
+     
+     
+      
     ]
   },
   
