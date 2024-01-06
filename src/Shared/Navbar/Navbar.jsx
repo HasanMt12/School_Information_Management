@@ -46,13 +46,13 @@ useEffect(() => {
               <Link to='/about'>About Us</Link>
             </li>
             <li>
-              <Link to='/m'>Authorities</Link>
+              <Link to='/authorities'>Authorities</Link>
             </li>
             <li>
-              <Link to='/'>Academic</Link>
+              <Link to='/academic'>Academic</Link>
             </li>
             <li>
-              <Link to='/'>Contact</Link>
+              <Link to='/contact'>Contact</Link>
             </li>
             <li>
             {userState?.userInfo?( <Dropdown placement="bottom-end">
