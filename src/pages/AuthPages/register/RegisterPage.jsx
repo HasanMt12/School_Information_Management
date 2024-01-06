@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import MainLayout from "../../../components/MainLayout";
 import { signup } from "../../../services/index/users.js";
 import { userActions } from "../../../store/reducers/userReducer.js";
 
@@ -61,14 +60,14 @@ const RegisterPage = () => {
    const password = watch("password");  // Watch the password field for confirming password equality
 
   return (
-    <MainLayout>
+    <>
       <section className="container mx-auto px-5 py-10">
         <div className="w-full max-w-sm mx-auto">
-          <h1 className="font-roboto text-2xl font-bold text-center text-dark-hard mb-8">
+          <h1 className="font-roboto text-2xl font-bold text-center text-black mb-8">
             Sign Up
           </h1>
           <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="flex flex-col mb-3 w-full">
               <label
                 htmlFor="name"
                 className="text-[#5a7184] font-semibold block"
@@ -89,7 +88,7 @@ const RegisterPage = () => {
                   },
                 })}
                 placeholder="Enter name"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`placeholder:text-[#959ead] text-black mt-2 rounded-lg px-5 py-2 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
@@ -99,7 +98,7 @@ const RegisterPage = () => {
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="flex flex-col mb-3 w-full">
               <label
                 htmlFor="email"
                 className="text-[#5a7184] font-semibold block"
@@ -121,7 +120,7 @@ const RegisterPage = () => {
                   },
                 })}
                 placeholder="Enter email"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`placeholder:text-[#959ead] text-black mt-2 rounded-lg px-5 py-2 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
@@ -131,7 +130,7 @@ const RegisterPage = () => {
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="flex flex-col mb-3 w-full">
               <label
                 htmlFor="password"
                 className="text-[#5a7184] font-semibold block"
@@ -152,7 +151,7 @@ const RegisterPage = () => {
                   },
                 })}
                 placeholder="Enter password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`placeholder:text-[#959ead] text-black mt-2 rounded-lg px-5 py-2 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
@@ -162,7 +161,7 @@ const RegisterPage = () => {
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="flex flex-col mb-3 w-full">
               <label
                 htmlFor="confirmPassword"
                 className="text-[#5a7184] font-semibold block"
@@ -184,7 +183,7 @@ const RegisterPage = () => {
                   },
                 })}
                 placeholder="Enter confirm password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`placeholder:text-[#959ead] text-black mt-2 rounded-lg px-5 py-2 font-semibold block outline-none border ${
                   errors.confirmPassword ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
@@ -197,21 +196,20 @@ const RegisterPage = () => {
             <button
               type="submit"
               disabled={!isValid || isLoading}
-              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="bg-[#1eb2a6] text-white font-bold text-lg py-2 px-8 w-full rounded-lg mb-3 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               Register
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
               You have an account?{" "}
-              <Link to="/login" className="text-primary">
+              <Link to="/login" className="text-[#1eb2a6]">
                 Login now
               </Link>
             </p>
           </form>
         </div>
       </section>
-      <h2>start</h2>
-    </MainLayout>
+   </>
   );
 };
 

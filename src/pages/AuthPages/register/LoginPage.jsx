@@ -51,14 +51,14 @@ const LoginPage = () => {
   };
 
   return (
-    <MainLayout>
+    
       <section className="container mx-auto px-5 py-10">
         <div className="w-full max-w-sm mx-auto">
           <h1 className="font-roboto text-2xl font-bold text-center text-dark-hard mb-8">
             Login
           </h1>
           <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="flex flex-col mb-3 w-full">
               <label
                 htmlFor="email"
                 className="text-[#5a7184] font-semibold block"
@@ -80,7 +80,7 @@ const LoginPage = () => {
                   },
                 })}
                 placeholder="Enter email"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`placeholder:text-[#959ead] text-dark-hard mt-2 rounded-lg px-5 py-2 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
@@ -90,7 +90,7 @@ const LoginPage = () => {
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="flex flex-col mb-3 w-full">
               <label
                 htmlFor="password"
                 className="text-[#5a7184] font-semibold block"
@@ -111,7 +111,7 @@ const LoginPage = () => {
                   },
                 })}
                 placeholder="Enter password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`placeholder:text-[#959ead] text-dark-hard mt-2 rounded-lg px-5 py-2 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
@@ -123,27 +123,27 @@ const LoginPage = () => {
             </div>
             <Link
               to="/forget-password"
-              className="text-sm font-semibold text-primary"
+              className="text-sm font-semibold text-[#1eb2a6]"
             >
               Forgot password?
             </Link>
             <button
               type="submit"
               disabled={!isValid || isLoading}
-              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="bg-[#1eb2a6] text-white font-bold text-lg py-2 px-8 w-full rounded-lg my-3 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               Sign In
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
               Do not have an account?{" "}
-              <Link to="/register" className="text-primary">
+              <Link to="/register" className="text-[#1eb2a6]">
                 Register now
               </Link>
             </p>
           </form>
         </div>
       </section>
-    </MainLayout>
+
   );
 };
 

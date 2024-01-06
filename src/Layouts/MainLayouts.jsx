@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import Footer from "../Shared/Footer/Footer";
 import { Helmet } from "react-helmet";
@@ -7,8 +7,9 @@ import Navbar from "../Shared/Navbar/Navbar";
 
 
 const MainLayout = ({title, description, keywords, author}) =>{
-  
-
+    const location = useLocation();
+    const noFooter = location.pathname.includes('login') || location.pathname.includes('register') ;
+    const noHeader = location.pathname.includes('register') || location.pathname.includes('login') ;
     return (
         <div className="font-Roboto bg-white">
             <Helmet>
@@ -19,9 +20,9 @@ const MainLayout = ({title, description, keywords, author}) =>{
                 <title>{title}</title>
             </Helmet>
            
-           <Navbar /> 
-           <Outlet/>
-           <Footer /> 
+           {noHeader || <Navbar /> } 
+                <Outlet/>
+           {noFooter || <Footer /> }
 
         </div>
     )
