@@ -54,26 +54,10 @@ const Footer = () => {
     </div>
    
 
-    <div className="mt-5 sm:mt-12 grid gap-y-2 px-6 md:px-12 lg:px-20 bg-black sm:gap-y-0 sm:flex sm:justify-between sm:items-center">
-      <div className="flex justify-between items-center">
-        <p className="text-sm text-[#a35b45]">© 2023 Insented. All rights reserved.</p>
-      </div>
-      
-      <div>
-        <Link to="https://www.facebook.com/profile.php?id=61550837099301" target="_blank" className="inline-flex justify-center items-center gap-x-3.5 w-10 md:h-12 h-10 text-center text-[#a35b45] rounded-md f transition" >
-          <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-          </svg>
-        </Link>
-        <Link to="https://www.instagram.com/insentyy/" target="_blank"
-        className="inline-flex justify-center items-center gap-x-3.5 w-10 md:h-12 h-10 text-center text-[#a35b45] rounded-md  transition"
-        >
-        <FaSquareInstagram />
-       </Link> 
-      
-       
-      </div>
-   
+    <div className="mt-5 py-2 sm:mt-12  gap-y-2 px-6 md:px-12 lg:px-20 bg-gray-200 flex justify-center items-center">
+
+        <p className=" text-sm text-center capitalize text-[#1eb2a6]">© 2023 school. All rights reserved.</p>
+
     </div>
   </div>
 </footer>
