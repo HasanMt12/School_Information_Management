@@ -154,3 +154,36 @@ p {
     height: 80vh;
   }
 }
+
+.newletter {
+  background-color: #1eb2a6;
+  padding: 50px 0;
+  color: #fff;
+}
+
+.newletter h1 {
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.newletter .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+.newletter input {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  outline: none;
+  height: 30px;
+}
+.newletter i {
+  padding: 12px;
+  color: #1eb2a6;
+  background-color: #fff;
+}
+
+.custom-notice{
+  clip-path: polygon(0% 0%, 100% 0, 86% 46%, 70% 100%, 0% 100%);}

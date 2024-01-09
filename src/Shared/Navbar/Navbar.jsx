@@ -1,5 +1,6 @@
 import  { useEffect, useState } from "react"
-import {Dropdown, DropdownTrigger,DropdownMenu, DropdownItem, Image} from "@nextui-org/react";
+import {Dropdown, DropdownTrigger,DropdownMenu, DropdownItem, Image, Button, Tooltip} from "@nextui-org/react";
+import { MdLogin } from "react-icons/md";
 import { Link } from "react-router-dom"
 import Head from "./Head"
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -92,12 +93,16 @@ useEffect(() => {
               <Link to='/contact'>Contact</Link>
             </li>
             <li>
-            {userState?.userInfo?( <Dropdown placement="bottom-end">
+          
+            </li>
+          </ul>
+          <div className="flex justify-center items-center mr-2">
+             {userState?.userInfo?( <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Image
               
               src={"https://i.ibb.co/0QZCv5C/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png"}
-              className="transition-transform ring-1 p-[1px] ring-cyan-600 w-7 h-7 md:w-8 md:h-8 cursor-pointer rounded-full"
+              className="transition-transform ring-1 p-[1px] ring-[#1eb2a6] w-7 h-7 md:w-8 md:h-8 cursor-pointer rounded-full"
               size="sm"
             
             />
@@ -105,7 +110,7 @@ useEffect(() => {
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold text-sm">Signed in as</p>
-              <p className="font-semibold text-sm text-cyan-600">{userState?.userInfo.email}</p>           
+              <p className="font-semibold text-sm text-[#1eb2a6]">{userState?.userInfo.email}</p>           
               </DropdownItem>
                <DropdownItem> <Link to="/dashboard">Admin Dashboard</Link> </DropdownItem>
               <DropdownItem   onClick={logoutHandler} key="logout" color="danger">
@@ -114,20 +119,22 @@ useEffect(() => {
             </DropdownMenu>
           </Dropdown>):(
             <li>
-            <Link to="/login" >
-              Login
+            <Link  to="/login" >
+              <Tooltip content="Only Admin Login">
+                <Button  size="sm"  className="text-sm bg-black/10 hover:bg-gray-200 rounded-sm flex justify-center items-center text-[#333333] font-semibold hover:text-[#1eb2a6]" variant="flat" color="default" >Login <MdLogin /></Button>
+              </Tooltip>
             </Link>
           </li>
           )}
-            </li>
-          </ul>
-          <div className={`start ${isFixed ? 'bg-[#1eb2a6]' : 'bg-[#1eb2a6]'} flex justify-center items-center px-10 py-2`}>
-            <div className='button'>Notice</div>
           </div>
+          
           <button className='toggle' onClick={() => setClick(!click)}>
             {click ? <IoMdClose/> : <RiMenu3Fill></RiMenu3Fill>}
           </button>
         </nav>
+         {/* <div className={`start ${isFixed ? 'bg-[#1eb2a6]' : 'bg-[#1eb2a6]'} flex justify-center items-center px-10 py-2`}>
+            <div className='button'>Notice</div>
+          </div> */}
       </header>
     </div>
   )

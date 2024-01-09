@@ -10,7 +10,7 @@ import Academic from "../pages/Academic";
 import AdminLayout from "../AdminDashboard/AdminLayout";
 import DashboardHome from "../AdminDashboard/components/DashboardPages/DashboardHome";
 import Speech from "../pages/Speech";
-
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,7 +64,11 @@ const router = createBrowserRouter([
       
     ]
   },
-  
+  {
+    path: '*',
+    element: <ErrorPage />,
+  },
+
 ]);
 
 export default router;

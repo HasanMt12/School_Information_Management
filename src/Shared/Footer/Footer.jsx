@@ -9,14 +9,11 @@ const Footer = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 px-4 md:px-12 lg:px-20  pt-4 ">
       
       <div className="col-span-1 md:mt-0 -mt-4">
-        <div className="-ml-4 flex justify-start items-center">
+        <div className="">
           <img src={logo} alt="insented" className="w-14 h-14"></img>
-          <h4 className="font-bold text-black yoyo md:text-lg text-md font-Lore">School</h4>
+          
         </div>
-        <div className="mt-2 grid space-y-2">
-          <p><Link to="/" className="inline-flex gap-x-1 text-gray-600 font-thin hover:text-[#1eb2a6] atc text-xs border border-b-[#1eb2a6] border-gray-50" >Our galeray</Link></p>
-
-        </div>
+     <h4 className="font-bold text-black yoyo md:text-md text-sm font-Lore">School</h4>
       </div>
 
    
@@ -24,7 +21,7 @@ const Footer = () => {
       <div className="col-span-1">
       <h4 className="font-semibold text-black yoyo md:text-lg text-md">About Us</h4>
         <div className="mt-3  space-y-2">
-          <Link to="/authorities"><p><a className="inline-flex gap-x-1 text-gray-600 font-thin hover:text-[#1eb2a6] atc text-xs" href="#">Academic </a></p></Link>
+          <Link to="/authorities"><p className="inline-flex gap-x-1 text-gray-600 font-thin hover:text-[#1eb2a6] atc text-xs">Academic </p></Link>
           <p><a className="inline-flex gap-x-1 text-gray-600 font-thin hover:text-[#1eb2a6] atc text-xs" href="#">About us</a></p>
           <p><a className="inline-flex gap-x-1 text-gray-600 font-thin hover:text-[#1eb2a6] atc text-xs" href="#">Responsibility</a></p>
         </div>

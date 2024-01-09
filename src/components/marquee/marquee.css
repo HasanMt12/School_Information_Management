@@ -1,21 +1,41 @@
-/* Marquee.css */
+/* */
+
+/* marquee.css */
 
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;
+  transition: margin 0.5s ease; /* Add transition for smooth margin change */
+}
+
+.marquee-container.visible {
+  margin-right: 30px;
+}
+
+.marquee-container.hidden {
+  margin-left: 60px;
+}
+/* Adjust margins for smaller screens (mobile devices) */
+@media (max-width: 767px) {
+  .marquee-container.visible {
+    margin-right: 5px;
+  }
+
+  .marquee-container.hidden {
+    margin-left: 5px;
+  }
 }
 
 .marquee-content {
-  
   animation: marqueeAnimation 20s linear infinite;
   -webkit-animation: marqueeAnimation 20s linear infinite;
 }
 
 @keyframes marqueeAnimation {
   from {
-    transform: translateX(90%);
+    transform: translateX(100%);
   }
   to {
-    transform: translateX(-90%);
+    transform: translateX(-100%);
   }
 }

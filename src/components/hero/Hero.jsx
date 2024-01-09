@@ -28,7 +28,7 @@ import Marquee from "../marquee/Marquee";
 
 const Hero = () => {
   const onChange = (currentSlide) => {
-    console.log(currentSlide);
+    // console.log(currentSlide);
   };
     const handleError = (error) => {
     console.error('Error loading image:', error);
@@ -36,14 +36,14 @@ const Hero = () => {
   return (
     <div >
        <Marquee text="Your notice Text Goes Here." />
-        <Carousel autoplay={true} afterChange={onChange} arrows className='z-100  mx-1'>
+        <Carousel autoplay={true} afterChange={onChange} arrows className='z-100  mx-1 md:mt-2 mt-0'>
       <div style={contentStyle} >
-          <img className='lg:h-[450px] md:h-[400px] h-[280px] w-full object-cover object-center' src={img} alt="Slide 1" onError={handleError} />
+          <img className='lg:h-[500px] md:h-[450px] h-[280px] w-full object-cover object-center' src={img} alt="Slide 1" onError={handleError} />
      
 
         </div>
         <div style={contentStyle}>
-          <img className='lg:h-[450px] md:h-[400px] h-[280px] w-full object-cover object-center' src={img2} alt="Slide 1" onError={handleError} />
+          <img className='lg:h-[500px] md:h-[450px] h-[280px] w-full object-cover object-center' src={img2} alt="Slide 1" onError={handleError} />
          
     
         </div>
