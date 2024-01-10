@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "../Shared/Navbar/Navbar";
 
 
-const MainLayout = ({title, description, keywords, author}) =>{
+const MainLayout = ({title, description, keywords, author}) => {
     const location = useLocation();
     const noFooter = location.pathname.includes('login') || location.pathname.includes('register') ;
     const noHeader = location.pathname.includes('register') || location.pathname.includes('login') ;

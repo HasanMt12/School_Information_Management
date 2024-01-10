@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isFixed, setIsFixed] = useState(false);
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
+  console.log(userState)
   // Logout handler dispatches the logout action
   const logoutHandler = () => {
     dispatch(logout());
@@ -110,7 +111,7 @@ useEffect(() => {
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold text-sm">Signed in as</p>
-              <p className="font-semibold text-sm text-[#1eb2a6]">{userState?.userInfo.email}</p>           
+              <p className="font-semibold text-sm text-[#1eb2a6]">{userState?.userInfo?.data?.user?.email}</p>           
               </DropdownItem>
                <DropdownItem> <Link to="/dashboard">Admin Dashboard</Link> </DropdownItem>
               <DropdownItem   onClick={logoutHandler} key="logout" color="danger">

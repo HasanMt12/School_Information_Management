@@ -3,7 +3,7 @@ import axios from "axios";
 // Make a POST request to the server's registration endpoint
 export const signup = async ({ name, email, password }) => {
   try {
-    const { data } = await axios.post("https://backend-ten-plum.vercel.app/api/users/register", {
+    const { data } = await axios.post("http://localhost:3000/api/v1/admin/register", {
       name,
       email,
       password,
@@ -24,7 +24,7 @@ export const signup = async ({ name, email, password }) => {
 
 export const login = async ({ email, password }) => {
   try {
-    const { data } = await axios.post("https://backend-ten-plum.vercel.app/api/users/login", {
+    const { data } = await axios.post("http://localhost:3000/api/v1/admin/login", {
       email,
       password,
     });
@@ -50,7 +50,7 @@ export const getUserProfile = async ({ token }) => {
     };
 
     // Send a GET request to retrieve the user profile information.
-    const { data } = await axios.get("https://backend-ten-plum.vercel.app/api/users/profile", config);
+    const { data } = await axios.get("http://localhost:3000/api/v1/admin/profile", config);
 
     // Return the user profile data.
     return data;
@@ -69,49 +69,49 @@ export const getUserProfile = async ({ token }) => {
 // Update user profile information by sending a PUT request to the "serverAPI/api/users/updateProfile" endpoint.
 // 
 
-export const updateProfile = async ({ token, userData }) => {
-  try {
-    // Set up the request configuration with the authorization token.
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
- // Send a PUT request to update the user profile with the provided data.
-    const { data } = await axios.put(
-      "https://backend-ten-plum.vercel.app/api/users/updateProfile",
-      userData,
-      config
-    );
-   // Return the updated user data.
-    return data;
-  } catch (error) {
-    // If the request fails, handle errors and throw appropriate messages.
-    if (error.response && error.response.data.message)
-      throw new Error(error.response.data.message);
-    throw new Error(error.message);
-  }
-};
+// export const updateProfile = async ({ token, userData }) => {
+//   try {
+//     // Set up the request configuration with the authorization token.
+//     const config = {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     };
+//  // Send a PUT request to update the user profile with the provided data.
+//     const { data } = await axios.put(
+//       "https://backend-ten-plum.vercel.app/api/users/updateProfile",
+//       userData,
+//       config
+//     );
+//    // Return the updated user data.
+//     return data;
+//   } catch (error) {
+//     // If the request fails, handle errors and throw appropriate messages.
+//     if (error.response && error.response.data.message)
+//       throw new Error(error.response.data.message);
+//     throw new Error(error.message);
+//   }
+// };
 
 
-export const updateProfilePicture = async ({ token, formData }) => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      },
-    };
+// export const updateProfilePicture = async ({ token, formData }) => {
+//   try {
+//     const config = {
+//       headers: {
+//         "Content-Type": "multipart/form-data",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     };
 
-    const { data } = await axios.put(
-      "https://backend-ten-plum.vercel.app/api/users/updateProfilePicture",
-      formData,
-      config
-    );
-    return data;
-  } catch (error) {
-    if (error.response && error.response.data.message)
-      throw new Error(error.response.data.message);
-    throw new Error(error.message);
-  }
-};
+//     const { data } = await axios.put(
+//       "https://backend-ten-plum.vercel.app/api/users/updateProfilePicture",
+//       formData,
+//       config
+//     );
+//     return data;
+//   } catch (error) {
+//     if (error.response && error.response.data.message)
+//       throw new Error(error.response.data.message);
+//     throw new Error(error.message);
+//   }
+// };

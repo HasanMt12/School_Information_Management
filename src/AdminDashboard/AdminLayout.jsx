@@ -7,7 +7,7 @@ import { getUserProfile } from "../services/index/users";
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import DashboardHeader from "./components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./components/DrawerSidbar/Sidebar";
 import {  AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SideBarMenu from "./components/DrawerSidbar/SideBarMenu";
@@ -16,47 +16,45 @@ import { BsFillDatabaseFill, BsDatabaseFillGear } from "react-icons/bs";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
-  const userState = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
+  const userState = useSelector((state) => state.user);
+  console.log(userState)
   const [isAdmin, setIsAdmin] = useState(false);
-  const {
-    data: profileData,
-    isLoading: profileIsLoading,
-    error: profileError,
-  } = useQuery({
-    queryFn: () => {
-      return getUserProfile({ token: userState.userInfo.token });
-    },
-    queryKey: ["profile"],
-    onSuccess: (data) => {
-      if (data && data?.admin === false ) {
-        navigate("/");
-        toast.error("Your are not allowed to access admin panel");
-      }else {
-        setIsAdmin(true);
-      }
-      
-    },
-    onError: (err) => {
-      console.log(err);
-      navigate("/");
-      toast.error("Your are not allowed to access admin panel");
-    },
-  });
+const [loading, setLoading] = useState(true);
 
-  if (profileIsLoading) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <h3 className="text-2xl text-slate-700">Loading...</h3>
-      </div>
-    );
-  }
- if (profileError || !profileData || profileData.admin === false) {
-  navigate("/");
-  toast.error("You are not allowed to access the admin panel.");
-  return null;
+// Check if the user is an admin based on userState directly
+useEffect(() => {
+  const checkAdminStatus = async () => {
+    try {
+      if (userState && userState.userInfo && userState.userInfo.data.user.admin) {
+        setIsAdmin(true);
+      } else {
+        navigate("/");
+        toast.error("You are not allowed to access the admin panel.");
+      }
+    } catch (error) {
+      console.error(error);
+      navigate("/");
+      toast.error("Failed to check admin status.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  checkAdminStatus();
+}, [userState, navigate]);
+
+if (loading) {
+  return (
+    <div className="w-full h-screen flex justify-center items-center">
+      <h3 className="text-2xl text-slate-700">Loading...</h3>
+    </div>
+  );
 }
 
+if (!isAdmin) {
+  return null;
+}
 const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
   return (
   <>
@@ -111,7 +109,7 @@ const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0"
     <nav className="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
       <ul className="space-y-1.5">
        
-       <Link to="/admin">
+       <Link to="/dashboard">
         <li>
           <div className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-slate-700 rounded-lg hover:bg-gray-100 " href="#">
             <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -120,11 +118,11 @@ const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0"
         </li>
         </Link> 
 
-      <Link to="/admin/users">  
+      <Link to="/dashboard/teacher">  
       <li>
           <button type="button" className=" w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100  ">
             <svg className="flex-shrink-0 mt-0.5 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4-.9-.3"/><path d="m15.2 13.9-.9-.3"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.6 18.7-.4-1"/><path d="m16.8 12.3-.4-1"/><path d="m14.3 16.6 1-.4"/><path d="m20.7 13.8 1-.4"/></svg>
-            Account
+            Tacher Create
              {/* <svg className="hs-accordion-active:block ms-auto hidden w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 
             <svg className="hs-accordion-active:hidden ms-auto block w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg> */}
