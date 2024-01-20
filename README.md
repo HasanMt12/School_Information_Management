@@ -6,7 +6,7 @@ This repository contains the code for a comprehensive school website built using
 ## Features
 - **Dashboard:** Centralized hub for school content management.
 - **Result Section:** Display and manage school results Record Using Bar chart.
-- - **School Events:** Management of school events and schedules.
+-  **School Events:** Management of school events and schedules.
 - **School Notices:** Important announcements and notices.
 - **School Authorities and Teachers:** Showing All School teachers/Authoritiess and thier details.
 - **Governing Body Speech:** Repository for speeches by the governing body.
