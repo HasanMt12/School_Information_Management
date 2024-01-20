@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createTeacher = async ({ token, formData }) => {
+export const createNavbarIcon= async ({ token, formData }) => {
   try {
     const config = {
       headers: {
@@ -9,7 +9,7 @@ export const createTeacher = async ({ token, formData }) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:3000/api/v1/teacher`,
+      `http://localhost:3000/api/v1/navbar`,
       formData,
       config
     );
@@ -24,10 +24,10 @@ export const createTeacher = async ({ token, formData }) => {
 
 // services/teacher.services.js
 
-export const readAllTeachers = async () => {
+export const readAllNavbarIcon = async () => {
   try {
     const { data, headers } = await axios.get(
-      `http://localhost:3000/api/v1/teacher`
+      `http://localhost:3000/api/v1/navbar`
     );
 
     return { data, headers };
@@ -39,7 +39,7 @@ export const readAllTeachers = async () => {
 };
 
 
-export const updateTeacher = async (token, teacherId, formData) => {
+export const updateNavbarIcon= async (token, iconId, formData) => {
     try {
       const config = {
         headers: {
@@ -48,7 +48,7 @@ export const updateTeacher = async (token, teacherId, formData) => {
       };
   
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/teacherUpdate/${teacherId}`,
+        `http://localhost:3000/api/v1/navbar/${iconId}`,
         formData,
         config
       );
@@ -60,7 +60,7 @@ export const updateTeacher = async (token, teacherId, formData) => {
       throw new Error(error.message);
     }
   };
-  export const deleteTeacher = async (token, teacherId) => {
+  export const deleteNavbarIcon= async (token, iconId) => {
     try {
       const config = {
         headers: {
@@ -69,7 +69,7 @@ export const updateTeacher = async (token, teacherId, formData) => {
       };
   
       const { data } = await axios.delete(
-        `http://localhost:3000/api/v1/teacher/${teacherId}`,
+        `http://localhost:3000/api/v1/navbar/${iconId}`,
         config
       );
   

@@ -12,6 +12,7 @@ import DashboardHome from "../AdminDashboard/components/DashboardPages/Dashboard
 import Speech from "../pages/Speech";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import CreatTeacher from "../AdminDashboard/components/DashboardPages/CreatTeacher";
+import NavbarOption from "../AdminDashboard/components/DashboardPages/NavbarOption";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/teacher",
         element: <CreatTeacher></CreatTeacher>
-        },
+      },
+      {
+          path: "/dashboard/header",
+          element: <NavbarOption></NavbarOption>
+      },
      
      
       

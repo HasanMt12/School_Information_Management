@@ -15,7 +15,6 @@ const Navbar = () => {
   const [isFixed, setIsFixed] = useState(false);
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
-  console.log(userState)
   // Logout handler dispatches the logout action
   const logoutHandler = () => {
     dispatch(logout());
@@ -23,16 +22,10 @@ const Navbar = () => {
 useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      // You can adjust the threshold value as needed
       const threshold = 100; 
-
-      // Check if the user has scrolled beyond the threshold
       setIsFixed(offset > threshold);
     };
-
     window.addEventListener('scroll', handleScroll);
-
-    // Cleanup the event listener when the component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
