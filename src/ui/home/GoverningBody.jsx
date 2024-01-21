@@ -6,8 +6,9 @@ import 'swiper/swiper-bundle.css';
 import SwiperCore, { Navigation } from 'swiper';
 import { useEffect, useRef, useState } from "react";
 SwiperCore.use([Navigation]);
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Tooltip} from "@nextui-org/react";
+import { Button, useDisclosure, Tooltip} from "@nextui-org/react";
 import { readAllTeachers } from "../../services/index/techersPost";
+import {  Avatar, Modal } from 'antd';
 const GoverningBody = () => {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const [teachers, setTeachers] = useState([]);
@@ -16,6 +17,7 @@ const GoverningBody = () => {
       try {
         const { data } = await readAllTeachers();
         setTeachers(data.data);
+        // console.log(data.data)
       } catch (error) {
         console.error(error);
       }
@@ -27,6 +29,7 @@ const GoverningBody = () => {
 
     const swiperRef = useRef();
 
+// swiper button
   const handlePrev = () => {
     if (swiperRef.current) {
       swiperRef.current.slidePrev();
@@ -39,13 +42,43 @@ const GoverningBody = () => {
     }
   };
 
-  const handleOpen = (size) => {
-    setSize(size)
-    onOpen();
-  }
+
+  // modal
+  const [modalState, setModalState] = useState({
+    open: false,
+    teacher: null,
+  });
+
+  const showModal = (teacher) => {
+    setModalState({
+      open: true,
+      teacher: teacher,
+    });
+  };
+
+  const handleOk = () => {
+    setModalState({
+      open: false,
+      teacher: null,
+    });
+  };
+
+  const handleCancel = () => {
+    setModalState({
+      open: false,
+      teacher: null,
+    });
+  };
+
+  // date formate
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+  
   return (
-    <div className="lg:my-12 md:my-10 my-8 py-4">
-        <h2 className="text-gray-900 border-l-4 border-[#1eb2a6] pl-2 lg:text-2xl md:text-xl text-lg font-semibold">Governing Body</h2>
+    <div className="lg:mb-12 md:mb-10 mb-8 py-4 px-auto">
+       
 <Swiper
         ref={(swiper) => {
             if (swiper) swiperRef.current = swiper;
@@ -81,7 +114,9 @@ const GoverningBody = () => {
         <>
         {teachers.map((teacher, index) => (
             <SwiperSlide key={index} className=" mt-8 ">
-            <div key={index}
+              <div key={index}>
+          
+<div 
                 className="bg-gray-100 relative shadow-lg overflow-hidden hover:shadow-sm group rounded-xl p-5 transition-all duration-500 transform">
                 <div className="flex items-center gap-4">
                 <img src={teacher.image}
@@ -91,13 +126,17 @@ const GoverningBody = () => {
                     <h1 className="text-[#1eb2a6] font-bold md:text-lg text-md">
                     {teacher.name}
                     </h1>
-                    <p className="text-gray-600 text-sm">junior teacher</p>
+                    <p className="text-gray-600 text-sm">{teacher.designation}</p>
                     <Tooltip content="click">
-                      <Button key={size} size="sm"  className="text-tiny bg-black/10 group-hover:bg-gray-200 rounded-sm mt-3 flex justify-center items-center text-[#333333] font-semibold group-hover:text-[#1eb2a6]" variant="flat" color="default" onPress={() => handleOpen(size)}>details <IoOpenOutline /></Button>
+                      <Button key={size} size="sm" onClick={() => showModal(teacher)}  className="text-tiny bg-black/10 group-hover:bg-gray-200 rounded-sm mt-3 flex justify-center items-center text-[#333333] font-semibold group-hover:text-[#1eb2a6]" variant="flat" color="default" >details <IoOpenOutline /></Button>
                     </Tooltip>
                 </div>
                 </div>
             </div>
+            
+              </div>
+            
+           
         </SwiperSlide>
          ))}
          
@@ -114,39 +153,35 @@ const GoverningBody = () => {
           <IoIosArrowRoundForward  />
         </button>
       </div>
-
-      <Modal 
-        size={size} 
-        isOpen={isOpen} 
-        onClose={onClose} 
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 z-[2000]">Modal Title</ModalHeader>
-              <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-              
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
+       {/* Dynamic Modal */}
+       {modalState.teacher && (
+        <Modal
+          open={modalState.open}
+          title="Teacher Details"
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={[
+            <Button key="cancel" onClick={handleCancel} variant="text" color="error">
+              Cancel
+            </Button>,
+            <Button key="ok" onClick={handleOk} size="sm"  className="bg-[#1EB2A6] text-white">
+              OK
+            </Button>,
+          ]}
+        >
+         <div className="flex justify-start items-center gap-2 pb-2 border-b-[1px] border-gray-600">
+          <Avatar src={modalState.teacher.image}></Avatar>
+          <p className="md:text-sm text-xs font-semibold text-gray-500 mt-2"> <span className="text-gray-700">{modalState.teacher.name}</span></p>
+          </div> 
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Designation:  <span className="text-[#1EB2A6] ml-2 font-medium"> {modalState.teacher.designation}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Email: <span className="text-[#1EB2A6] ml-2 font-medium">{modalState.teacher.email}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Address: <span className="text-[#1EB2A6] ml-2 font-medium">{modalState.teacher.address.city}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Education: <span className="text-[#1EB2A6] ml-2 font-medium">{modalState.teacher.education.degree}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Phone: <span className="text-[#1EB2A6] ml-2 font-medium">{modalState.teacher.phone}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Gender: <span className="text-[#1EB2A6] ml-2 font-medium">{modalState.teacher.gender}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Joining Date: <span className="text-[#1EB2A6] ml-2 font-medium">{formatDate(modalState.teacher.joinDate)}</span></p>
+          <p className="md:text-sm text-xs font-semibold text-gray-500">Experience: <span className="text-[#1EB2A6] ml-2 font-medium">{modalState.teacher.yearsOfExperience}</span></p>
+        </Modal>   )}
       </Swiper>
     </div>
   )

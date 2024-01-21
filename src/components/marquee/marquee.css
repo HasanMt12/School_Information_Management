@@ -26,16 +26,4 @@
   }
 }
 
-.marquee-content {
-  animation: marqueeAnimation 20s linear infinite;
-  -webkit-animation: marqueeAnimation 20s linear infinite;
-}
 
-@keyframes marqueeAnimation {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}

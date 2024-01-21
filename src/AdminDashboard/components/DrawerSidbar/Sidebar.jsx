@@ -13,13 +13,13 @@ const Sidebar = ({isOpen, setIsOpen , children}) => {
     >
       <section
         className={
-          " w-screen max-w-lg left-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
+          " w-screen max-w-lg left-0 absolute bg-[#457B9D] z-[1000]  h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
           (isOpen ? " translate-x-0 " : " translate-x-full ")
         }
       >
  
         <article className="relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
-          <header className="p-4 font-bold  text-lg">Header</header>
+          <header className="p-4 font-bold mb-6 text-lg backdrop-blur-xl backdrop-brightness-150">Header</header>
            {children} 
         </article>
       </section>

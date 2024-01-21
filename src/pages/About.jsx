@@ -1,9 +1,34 @@
+import { useEffect, useState } from 'react';
 import logo from '../assets/logo.svg'
+import { readAllNavbarIcon } from '../services/index/navbarPost';
+import ScrollToTop from '../hooks/ScrollToTop';
 
 const About = () => {
+  const [nav, setNav] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await readAllNavbarIcon();
+        
+        setNav(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   return (
-    <div className="min-h-screen py-2">
-      <img src={logo} alt="logo" className=' mx-auto w-40'></img>
+    <ScrollToTop>
+      <div className="min-h-screen py-2">
+       {nav && nav?.map((i, index) => ( 
+        <div key={index} className='flex flex-col justify-center items-center'>
+          <img src={i.image} alt="logo" className=' mx-auto md:w-32 w-24'></img>
+          <h2 className='text-sm text-[#1EB2A6] font-bold'>{i.schoolName}</h2>
+        </div>
+       ))}
+      
       <div className="lg:px-12 md:px-8 px-4">
 
        
@@ -26,6 +51,8 @@ Education at [School Name] goes beyond the classroom. We place a strong emphasis
 
  </div>
       </div>
+    </ScrollToTop>
+    
   )
 }
 

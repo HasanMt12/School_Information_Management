@@ -1,24 +1,86 @@
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import img from '../../assets/school.webp'
-import img2 from '../../assets/school2.webp'
+
+import { useEffect, useState } from "react";
+import { readAllgalleryPhoto } from "../../services/index/GalleryPhoto";
+import ReactPlayer from "react-player";
+import { readAllVideoPhoto } from "../../services/index/videoPost";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import 'react-photo-view/dist/react-photo-view.css';
+
 const Gallery = () => {
+  const [speech, setSpeech] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await readAllgalleryPhoto();
+        // console.log(data.data)
+        setSpeech(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  const displayLimit = 3;
+  const limitedPhoto = speech.slice(0, displayLimit);
+
+
+  const [video, setVideo] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await readAllVideoPhoto();
+        // console.log(data.data)
+        setVideo(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  const displayLimitVideo = 2;
+  const limitedVideo = video.slice(0, displayLimitVideo);
   return (
     <div>
-        <div className="flex justify-between items-center">
-        <h2 className="text-gray-900 border-l-4 pl-2 border-[#1eb2a6] lg:text-2xl md:text-xl text-lg font-semibold">Our Gallery</h2>
-        <Link to='/speech' className='md:ml-0 ml-4 md:px-6 px-3 rounded md:py-2 py-1 md:mt-4 my-2 md:w-[180px] w-[120px] hover:bg-white gap-2 border border-[#1EB2A6] hover:text-[#1EB2A6] bg-[#1EB2A6] text-white md:text-md text-sm flex justify-center items-center'>
-                See More <FaLongArrowAltRight className="mt-1 "></FaLongArrowAltRight>
-              </Link>
-        </div>
+        
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 mx-auto max-w-[400px] md:max-w-[95%] place-items-center">
-    <img className="hover:opacity-75 w-full object-cover object-center rounded-sm" src={img}/>
-    <img className="hover:opacity-75 w-full object-cover object-center rounded-sm" src={img2}/>
-    <img className="hover:opacity-75 w-full object-cover object-center rounded-sm" src={img}/>
-    <img className="hover:opacity-75 w-full object-cover object-center rounded-sm" src={img2}/>
-    <img className="hover:opacity-75 w-full object-cover object-center rounded-sm" src={img}/>
-    <img className="hover:opacity-75 w-full object-cover object-center rounded-sm" src={img2}/>
+        {limitedPhoto && limitedPhoto?.map((i, index) => (
+            <PhotoProvider>
+            <PhotoView src={i.image}>
+            <img key={index} className="hover:opacity-75 cursor-zoom-in w-full object-cover object-center rounded-sm" src={i.image}/>
+            </PhotoView>
+          </PhotoProvider>
+        ))}
 </div>
+<div className="grid md:grid-cols-2 grid-cols-1 md:px-16 gap-4 mx-auto md:my-10 my-5">
+  {limitedVideo &&
+    limitedVideo?.map((item, index) => (
+      <div
+        className="mx-auto "
+        key={index}
+      >
+        {item.youtube ? (
+          <>
+          <div className="mx-auto lg:block hidden">
+            <ReactPlayer url={item.youtube} controls={true} width="500px" />
+          </div>
+          <div className="mx-auto md:block lg:hidden sm:hidden">
+            <ReactPlayer url={item.youtube} controls={true} width="300px" />
+          </div>
+          <div className="mx-auto sm:hidden">
+            <ReactPlayer url={item.youtube} controls={true} width="300px" />
+          </div>
+          </>
+          
+        ) : (
+          ""
+        )}
+        
+      </div>
+    ))}
+</div>
+
     </div>
   )
 }

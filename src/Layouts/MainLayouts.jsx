@@ -8,9 +8,10 @@ import Navbar from "../Shared/Navbar/Navbar";
 
 const MainLayout = ({title, description, keywords, author}) => {
     const location = useLocation();
-    const noFooter = location.pathname.includes('login') || location.pathname.includes('register') ;
-    const noHeader = location.pathname.includes('register') || location.pathname.includes('login') ;
+    const noFooter = location.pathname.includes('login') || location.pathname.includes('demo-notice') ;
+    const noHeader = location.pathname.includes('demo-notice') || location.pathname.includes('login') ;
     return (
+        
         <div className="font-Roboto bg-white">
             <Helmet>
                 <meta charSet="utf-8" />
@@ -22,6 +23,7 @@ const MainLayout = ({title, description, keywords, author}) => {
            
            {noHeader || <Navbar /> } 
                 <Outlet/>
+            
            {noFooter || <Footer /> }
 
         </div>

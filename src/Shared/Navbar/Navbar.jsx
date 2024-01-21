@@ -33,7 +33,7 @@ useEffect(() => {
   return (
     <div>
       <Head />
-      <header className={isFixed ? 'fixed-header backdrop-blur-sm max-w-[1280px] md:min-w-[95%] min-w-[94%] ' : 'md:bg-gray-200 bg-[#1eb2a6] '}>
+      <header className={isFixed ? 'fixed-header backdrop-blur-sm  md:min-w-full min-w-[94%] ' : 'md:bg-gray-200 bg-[#1eb2a6] '}>
         <nav className='flexSB'>
           <ul className={`py-4 px-8 ${click ? "mobile-nav" : "flexSB "} `} onClick={() => setClick(false)}>
             <li>
@@ -51,12 +51,7 @@ useEffect(() => {
             <DropdownMenu  variant="flat" >
               <DropdownItem  className="">
               <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
-              <Link to='/authorities'>Teachers </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
-            </li>
-              </DropdownItem>
-              <DropdownItem  className="">
-              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
-              <Link to='/authorities'>stuff  </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+              <Link to='/speech'>Governing Body</Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
             </li>
               </DropdownItem>
           
@@ -71,12 +66,22 @@ useEffect(() => {
             <DropdownMenu  variant="flat" >
               <DropdownItem  className="">
               <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
-              <Link to='/academic'>Routine of All classes </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+              <Link to='/notice'>All Notice</Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
             </li>
               </DropdownItem>
               <DropdownItem  className="">
               <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
-              <Link to='/academic'>Result of All classes  </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+              <Link to='/authorities'>Teachers </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+            </li>
+              </DropdownItem>
+              <DropdownItem  className="">
+              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
+              <Link to='/authorities'>stuff  </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
+            </li>
+              </DropdownItem>
+              <DropdownItem  className="">
+              <li className="flex justify-evenly items-center gap-2 hover:text-[#1eb2a6]">
+              <Link to='/gallery'>School Gallery  </Link><FaLongArrowAltRight className="text-[#1eb2a6]"/>
             </li>
               </DropdownItem>
           

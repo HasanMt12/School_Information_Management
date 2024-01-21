@@ -3,7 +3,9 @@ import { createNavbarIcon, deleteNavbarIcon, readAllNavbarIcon, updateNavbarIcon
 import { useForm } from "react-hook-form";
 import { Avatar, Input } from "@nextui-org/react";
 import toast from "react-hot-toast";
-import { deleteTeacher } from "../../../services/index/techersPost";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+
 
 const NavbarMainOption = () => {
     const { register, handleSubmit, reset } = useForm(); 
@@ -83,7 +85,7 @@ const NavbarMainOption = () => {
         const fetchData = async () => {
           try {
             const { data } = await readAllNavbarIcon();
-            console.log(data)
+            //console.log(data)
             setNav(data.data);
           } catch (error) {
             console.error(error);
@@ -95,8 +97,8 @@ const NavbarMainOption = () => {
       const color = "primary";
     return (
         <div>
-            header
-            <form  onSubmit={handleSubmit(onSubmit)}>
+              <h2 className="text-gray-900 mx-auto md:w-[30%]  w-[70%] text-center my-6 border-x-2 border-[#1eb2a6] px-2 lg:text-2xl  capitalize md:text-xl text-lg font-semibold ">Navbar content Form</h2> 
+            <form  onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md md:mb-20 mb-10 md:px-3 px-1 md:py-3 py-1">
      
      <div className="grid md:grid-cols-3 grid-cols-2 gap-2">
        <div >
@@ -117,27 +119,36 @@ const NavbarMainOption = () => {
       type="submit">{selectedNavbarId ? "Update social Option" : "Create social Option"}</button>
     
    </form>
-   <table class="min-w-full divide-y divide-gray-200 my-6">
-    <thead>
+       <h2 className="text-gray-900 mx-auto md:w-[30%]  w-[70%] text-center my-6 border-x-2 border-[#1eb2a6] px-2 lg:text-2xl  capitalize md:text-xl text-lg font-semibold ">Navbar content Table</h2> 
+ <div className="w-full overflow-x-scroll">
+   <table className="w-full divide-y divide-[#457B9D] my-6 bg-white shadow-lg">
+    <thead className="bg-[#DCE8F5] text-[#457B9D]">
         <tr>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">logo</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">school name</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">EIIN Number</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+        <th className="px-6 py-3 text-left md:text-sm text-xs font-semibold uppercase tracking-wider">logo</th>
+            <th className="px-6 py-3 text-left md:text-sm text-xs font-semibold uppercase tracking-wider">school name</th>
+            <th className="px-6 py-3 text-left md:text-sm text-xs font-semibold uppercase tracking-wider">EIIN Number</th>
+            <th className="px-6 py-3 text-left md:text-sm text-xs font-semibold uppercase tracking-wider">Action</th>
         </tr>
     </thead>
-    {nav.map((i, index) => ( 
-    <tbody key={index} class="bg-white divide-y divide-gray-200">
+    {nav && nav?.map((i, index) => ( 
+    <tbody key={index} className="w-full divide-y divide-[#457B9D] my-6">
         <tr>
-        <td class="px-6 py-4 whitespace-nowrap"> <Avatar src={i.image} /></td>
-            <td class="px-6 py-4 whitespace-nowrap">{i.schoolName}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{i.eiin}</td>
-            <button onClick={() => handleUpdate(i._id)} class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Edit</button>
-                <button onClick={() => handleRemove(i._id)} class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Delete</button>
+        <td className="px-6 py-4 "> <Avatar src={i.image} /></td>
+            <td className="px-6 py-4 ">{i.schoolName}</td>
+            <td className="px-6 py-4 ">{i.eiin}</td>
+             <td className="py-4 flex justify-start items-center gap-1">
+         <button onClick={() => handleUpdate(i._id)} className="text-slate-800 hover:bg-slate-800 hover:text-white border-solid border-[1px] rounded-md px-2 py-1 border-slate-800 flex justify-center items-center gap-1 ">
+        <FaEdit /> Edit 
+      </button>
+         <button onClick={() => handleRemove(i._id)} className="text-[#e53935] hover:text-white hover:bg-[#e53935] border-solid border-[1px] rounded-md px-2 py-1 border-[#e53935] flex justify-center items-center gap-1 ">
+        <MdDeleteForever /> Delete 
+      </button>
+        </td> 
         </tr>
     </tbody>
     ))} 
 </table>
+</div>
         </div>
     );
 }

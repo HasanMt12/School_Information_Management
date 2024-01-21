@@ -1,32 +1,28 @@
 
-
-
-
-// import Heading from "../heading/Heading"
-import img from '../../assets/school.webp'
-import img2 from '../../assets/school2.webp'
+import { Carousel } from "react-responsive-carousel";
 import "./Hero.css"
-import { Carousel } from 'antd';
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
-const contentStyle = {
+import { useEffect, useState } from 'react';
+import { readAllsliderPhoto } from '../../services/index/sliderPhoto';
+import MarqueeText from "../marquee/Marquee";
 
- height: '500px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  // Replace with your background image path
-  backgroundSize: 'cover',
-  '@media (max-width: 400px)': {
-    height: '350px',
-  },
-  '@media (min-width: 401px)': {
-    height: '500px',
-  },
-};
-
-import Marquee from "../marquee/Marquee";
 
 const Hero = () => {
+  const [slider, setSlider] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await readAllsliderPhoto();
+        //console.log(data)
+        setSlider(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
@@ -35,20 +31,17 @@ const Hero = () => {
   };
   return (
     <div >
-       <Marquee text="Your notice Text Goes Here." />
-        <Carousel autoplay={true} afterChange={onChange} arrows className='z-100  mx-1 md:mt-2 mt-0'>
-      <div style={contentStyle} >
-          <img className='lg:h-[500px] md:h-[450px] h-[280px] w-full object-cover object-center' src={img} alt="Slide 1" onError={handleError} />
+       <MarqueeText  />
+       
+       <Carousel autoPlay showThumbs={false}>
+       {slider && slider?.map((i, index) => ( 
+        
+          <img key={index} className='lg:h-[500px] md:h-[450px] h-[280px] w-full object-cover object-center' src={i.image} alt="Slide 1" onError={handleError} />
      
 
-        </div>
-        <div style={contentStyle}>
-          <img className='lg:h-[500px] md:h-[450px] h-[280px] w-full object-cover object-center' src={img2} alt="Slide 1" onError={handleError} />
-         
-    
-        </div>
      
-    </Carousel>
+        ))} 
+       </Carousel>
     </div>
   )
 }
